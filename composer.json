@@ -1,0 +1,14 @@
+{
+    "name": "sebs/php-tca",
+    "description": "This dummy project serves as a playground for clean architecture in PHP.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastiaan de Jonge",
+            "email": "mail@sebastiaandejonge.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
