@@ -15,5 +15,8 @@
         "psr-4": {
             "Sebs\\Tca\\": ["src/"]
         }
+    },
+    "require-dev": {
+        "peridot-php/peridot": "dev-master"
     }
 }
