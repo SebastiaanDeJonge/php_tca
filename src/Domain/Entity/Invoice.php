@@ -9,7 +9,7 @@ use DateTime;
 class Invoice extends AbstractEntity
 {
     /**
-     * @var Order
+     * @var int
      */
     protected $order;
 
@@ -24,7 +24,7 @@ class Invoice extends AbstractEntity
     protected $total;
 
     /**
-     * @return Order
+     * @return int
      */
     public function getOrder()
     {
@@ -32,7 +32,7 @@ class Invoice extends AbstractEntity
     }
 
     /**
-     * @param Order $order
+     * @param int $order
      * @return self
      */
     public function setOrder($order)
