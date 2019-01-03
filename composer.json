@@ -1,5 +1,5 @@
 {
-    "name": "sebs/php-tca",
+    "name": "sebs/tca",
     "description": "This dummy project serves as a playground for clean architecture in PHP.",
     "type": "project",
     "license": "MIT",
@@ -10,5 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sebs\\Tca\\": ["src/"]
+        }
+    }
 }
