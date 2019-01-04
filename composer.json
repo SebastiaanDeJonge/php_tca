@@ -17,6 +17,7 @@
         }
     },
     "require-dev": {
-        "peridot-php/peridot": "dev-master"
+        "peridot-php/peridot": "^1",
+        "peridot-php/peridot-watcher-plugin": "dev-master"
     }
 }
