@@ -7,7 +7,7 @@ namespace Sebs\Tca\Domain\Entity;
 class Order extends AbstractEntity
 {
     /**
-     * @var int
+     * @var Customer
      */
     protected $customer;
 
@@ -27,7 +27,7 @@ class Order extends AbstractEntity
     protected $total;
 
     /**
-     * @return int
+     * @return Customer
      */
     public function getCustomer()
     {
@@ -35,10 +35,10 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @param int $customer
+     * @param Customer $customer
      * @return self
      */
-    public function setCustomer($customer)
+    public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
         return $this;
