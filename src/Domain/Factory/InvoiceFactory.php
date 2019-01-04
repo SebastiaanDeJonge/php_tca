@@ -1,6 +1,7 @@
 <?php
 namespace Sebs\Tca\Domain\Factory;
 
+use DateTime;
 use Sebs\Tca\Domain\Entity\Invoice;
 use Sebs\Tca\Domain\Entity\Order;
 
@@ -15,6 +16,9 @@ class InvoiceFactory
      */
     public function createFromOrder(Order $order)
     {
-        return new Invoice();
+        return (new Invoice())
+            ->setOrder($order)
+            ->setTotal($order->getTotal())
+            ->setInvoiceDate(new DateTime());
     }
 }
