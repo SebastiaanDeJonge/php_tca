@@ -2,6 +2,8 @@
 use Sebs\Tca\Domain\Entity\Invoice;
 use Sebs\Tca\Domain\Entity\Order;
 use Sebs\Tca\Domain\Factory\InvoiceFactory;
+use Sebs\Tca\Domain\Repository\OrderRepositoryInterface;
+use Sebs\Tca\Domain\Service\InvoicingService;
 
 describe('InvoiceFactory', function() {
     describe('->createFromOrder()', function() {
@@ -39,7 +41,39 @@ describe('InvoiceFactory', function() {
 
 describe('InvoicingService', function() {
     describe('->generateInvoices()', function() {
-        it('should query the repository for uninvoiced Orders');
-        it('should return an Invoice for each unvoiced Order');
+        beforeEach(function() {
+            $this->repository = $this->getProphet()->prophesize(OrderRepositoryInterface::class);
+            $this->factory = $this->getProphet()->prophesize(InvoiceFactory::class);
+        });
+
+        it('should query the repository for uninvoiced Orders', function() {
+            $this->repository->getUninvoicedOrders()->shouldBeCalled();
+            $service = new InvoicingService(
+                $this->repository->reveal(),
+                $this->factory->reveal()
+            );
+            $service->generateInvoices();
+        });
+
+        afterEach(function() {
+            $this->getProphet()->checkPredictions();
+        });
+
+        it('should return an Invoice for each unvoiced Order', function() {
+            $orders = [(new Order())->setTotal(512)];
+            $invoices = [(new Invoice())->setTotal(512)];
+
+            $this->repository->getUninvoicedOrders()->willReturn($orders);
+            $this->factory->createFromOrder($orders[0])->willReturn($invoices[0]);
+
+            $service = new InvoicingService(
+                $this->repository->reveal(),
+                $this->factory->reveal()
+            );
+            $results = $service->generateInvoices();
+
+            assert(is_array($results));
+            assert(count($results) === count($orders));
+        });
     });
 });
